@@ -1,0 +1,58 @@
+{
+  "synthetic": true,
+  "authoredAt": "2026-08-24T09:00:00.000Z",
+  "durationSeconds": 42,
+  "note": "Authored fixture, not a recording. No call was placed to produce this file. It contains no transcript, audio, identifier or timing from any real conversation. The dialogue is written; the structure reproduces a CALL-E run so the classifier is exercised offline. The destination is +4917604069001, inside a mobile block the German networks keep permanently unassigned for use in media.",
+  "goal": "Call the person answering about an open Early care shift starting Sunday 06:00 at Haus Lindenhof, Station 2 (8 hours). Ask whether they can take it. If yes, confirm and ask what time they can arrive. If no, thank them and end the call politely — do not push. If they ask to be called back, note the time they name. Do not offer pay, terms or anything not stated here.",
+  "raw": {
+    "run_id": "synthetic-run-01-no-answer",
+    "status": "COMPLETED",
+    "message": "Synthetic fixture — no call was placed.",
+    "display_goal": "Call the person who answers about an open Early care shift starting Sunday at 06:00 at Haus Lindenhof, Station 2, for 8 hours. Ask whether they can take the shift. If yes, confirm that they can take it and ask what time they can arrive. If no, thank them and end the call politely without pushing. If they ask to be called back, note the callback time they name and report it back. Do not offer pay, terms, or anything not stated here.",
+    "schedule_mode": "immediate",
+    "result": {
+      "summary": "The call reached voicemail and the recorded message was sent, but no live availability answer was obtained. The recipient may be busy or unavailable.",
+      "post_summary": "The call reached voicemail and the recorded message was sent, but no live availability answer was obtained. The recipient may be busy or unavailable.",
+      "outcome": {
+        "task_completed": false,
+        "completion_confidence": {
+          "score": 0.85,
+          "label": "high"
+        },
+        "evidence": [
+          "Voicemail answered instead of a live person.",
+          "A recorded message about the shift purpose was sent.",
+          "No live availability answer or arrival time was obtained."
+        ]
+      },
+      "extracted": {
+        "goal": "Call the person who answers about an open Early care shift starting Sunday at 06:00 at Haus Lindenhof, Station 2, for 8 hours. Ask whether they can take the shift. If yes, confirm that they can take it and ask what time they can arrive. If no, thank them and end the call politely without pushing. If they ask to be called back, note the callback time they name and report it back. Do not offer pay, terms, or anything not stated here.",
+        "region": "DE",
+        "language": "German",
+        "calling": {
+          "calls": [
+            {
+              "status": "finished",
+              "reason_code": "0",
+              "duration_seconds": 42
+            }
+          ],
+          "status": "finished",
+          "callee_count": 1,
+          "duration_seconds": 42
+        },
+        "to_phones": [
+          "+4917604069001"
+        ]
+      },
+      "transcript": "[00:00:00] BOT: Hallo.\n[00:00:05] USER: Guten Tag, Sie haben die Mailbox erreicht. Bitte hinterlassen Sie eine Nachricht nach dem Ton.\n[00:00:08] BOT: Hallo, es geht um einen offenen Frühdienst am Sonntag ab sechs Uhr im Haus Lindenhof,\n[00:00:15] BOT: Station zwei, für acht Stunden.\n[00:00:21] BOT: Bitte melden Sie sich kurz, falls Sie die Schicht übernehmen können.\n[00:00:28] USER: Die Nachricht wurde gespeichert. Auf Wiederhören.",
+      "call_id": "synthetic-call-01-no-answer",
+      "call_ids": [
+        "synthetic-call-01-no-answer"
+      ]
+    },
+    "next_step": {
+      "action": "ask_user_for_retry_confirmation"
+    }
+  }
+}

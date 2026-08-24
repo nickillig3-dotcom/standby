@@ -1,0 +1,254 @@
+/* Standby — one stylesheet, no framework, no build step.
+   Palette: cold pre-dawn ground, one amber accent for the call in flight,
+   because the whole product is about 05:40. */
+
+:root {
+  --ground: #f6f7f9;
+  --card: #ffffff;
+  --ink: #14171c;
+  --muted: #5d646f;
+  --faint: #9aa2ae;
+  --line: #e2e6ec;
+  --accent: #b45309;       /* the live call */
+  --accent-soft: #fdf3e7;
+  --good: #17694a;
+  --good-soft: #e8f4ee;
+  --bad: #8a2f2f;
+  --bad-soft: #f8eded;
+  --radius: 10px;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #101318;
+    --card: #171b21;
+    --ink: #e8ebef;
+    --muted: #a2abb8;
+    --faint: #6b7480;
+    --line: #262c35;
+    --accent: #e0a355;
+    --accent-soft: #2a2118;
+    --good: #6cc79b;
+    --good-soft: #16261f;
+    --bad: #e08b8b;
+    --bad-soft: #2a1a1a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── header ─────────────────────────────────────────────────────────────── */
+
+.top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 18px 28px; border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.mark {
+  font-size: 30px; line-height: 1; color: var(--accent);
+  transform: rotate(-90deg); display: inline-block;
+}
+.top h1 { margin: 0; font-size: 21px; letter-spacing: -0.01em; }
+.top p { margin: 2px 0 0; color: var(--muted); font-size: 13.5px; }
+
+.mode {
+  font: 600 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+  white-space: nowrap;
+}
+.mode.live { color: var(--accent); border-color: var(--accent); }
+
+/* ── layout ─────────────────────────────────────────────────────────────── */
+
+main {
+  display: grid; gap: 18px; padding: 22px 28px;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr) minmax(260px, 340px);
+  align-items: start;
+}
+@media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+
+.panel {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px 20px;
+}
+.panel h2 {
+  margin: 0 0 14px; font-size: 12px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--faint); font-weight: 700;
+}
+
+/* ── the gap ────────────────────────────────────────────────────────────── */
+
+.field { margin-bottom: 12px; }
+.field label {
+  display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; font-weight: 600;
+}
+select {
+  width: 100%; padding: 9px 10px; font: inherit; font-size: 14px;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: var(--ground); color: var(--ink);
+}
+.hint {
+  display: inline-grid; place-items: center; width: 15px; height: 15px; margin-left: 4px;
+  border-radius: 50%; background: var(--line); color: var(--muted);
+  font-size: 10px; font-weight: 700; cursor: help; vertical-align: 1px;
+}
+.note {
+  margin: 6px 0 14px; padding: 10px 12px; border-left: 2px solid var(--accent);
+  background: var(--accent-soft); border-radius: 0 6px 6px 0;
+  font-size: 13.5px; color: var(--ink);
+}
+.meta { margin: 0 0 16px; display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 13px; }
+.meta dt { color: var(--faint); }
+.meta dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.actions { display: flex; gap: 8px; }
+button {
+  font: inherit; font-size: 14px; font-weight: 600; padding: 10px 16px;
+  border-radius: 8px; cursor: pointer; border: 1px solid transparent;
+}
+button.primary { background: var(--ink); color: var(--card); }
+button.primary:hover:not(:disabled) { opacity: 0.88; }
+button.ghost { background: transparent; border-color: var(--line); color: var(--muted); }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.cost { margin: 12px 0 0; font-size: 12px; color: var(--faint); }
+
+/* ── the roster ─────────────────────────────────────────────────────────── */
+
+.cascade-head { display: flex; align-items: baseline; justify-content: space-between; }
+.counter { font: 600 12px var(--mono); color: var(--muted); }
+
+.roster { list-style: none; margin: 0; padding: 0; }
+.roster li {
+  display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center;
+  padding: 11px 12px; border: 1px solid transparent; border-radius: 8px;
+  transition: background 0.25s, border-color 0.25s, opacity 0.25s;
+}
+.roster li + li { margin-top: 3px; }
+.roster .pos { font: 600 12px var(--mono); color: var(--faint); text-align: right; }
+.roster .who { min-width: 0; }
+.roster .name { font-weight: 600; }
+.roster .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.roster .sub.quote { font-style: italic; }
+.roster .tag {
+  font: 600 10.5px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 5px 8px; border-radius: 999px; white-space: nowrap;
+  background: var(--line); color: var(--muted);
+}
+
+.roster li[data-state="calling"] {
+  background: var(--accent-soft); border-color: var(--accent);
+}
+.roster li[data-state="calling"] .tag { background: var(--accent); color: var(--card); }
+.roster li[data-state="calling"] .name::after {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin-left: 8px;
+  border-radius: 50%; background: var(--accent); animation: pulse 1s infinite;
+  vertical-align: 2px;
+}
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+.roster li[data-state="accepted"] { background: var(--good-soft); border-color: var(--good); }
+.roster li[data-state="accepted"] .tag { background: var(--good); color: var(--card); }
+.roster li[data-state="declined"] .tag,
+.roster li[data-state="failed"] .tag { background: var(--bad-soft); color: var(--bad); }
+.roster li[data-state="skipped"],
+.roster li[data-state="stood_down"] { opacity: 0.5; }
+.roster li[data-clickable="1"] { cursor: pointer; }
+.roster li[data-clickable="1"]:hover { border-color: var(--faint); }
+
+/* ── held for a person ──────────────────────────────────────────────────── */
+/* Deliberately the loudest thing on the page while it is up. A pending
+   decision that looks like a status line gets scrolled past at 05:40. */
+
+.held {
+  margin-top: 16px; padding: 14px 16px;
+  border: 1px solid var(--accent); border-left-width: 4px;
+  border-radius: var(--radius); background: var(--accent-soft);
+}
+.held-head { font-size: 15px; font-weight: 650; color: var(--accent); }
+.held-why { margin: 6px 0 0; font-size: 14px; color: var(--ink); }
+.held-note { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+.held-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.held-by {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 10px; font-size: 12.5px; color: var(--muted);
+}
+.held-by input {
+  font: inherit; padding: 5px 8px; border: 1px solid var(--line);
+  border-radius: 7px; background: var(--card); color: var(--ink); min-width: 160px;
+}
+.held-by input.needed { border-color: var(--bad); }
+
+.roster li[data-state="needs_review"] {
+  background: var(--accent-soft); border-color: var(--accent);
+}
+.roster li[data-state="needs_review"] .tag { background: var(--accent); color: var(--card); }
+
+/* ── outcome ────────────────────────────────────────────────────────────── */
+
+.outcome { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.outcome-main { font-size: 17px; font-weight: 650; margin-bottom: 10px; }
+.outcome-main.filled { color: var(--good); }
+.outcome-main.unfilled { color: var(--bad); }
+.outcome-stats { display: flex; flex-wrap: wrap; gap: 22px; font-size: 13px; color: var(--muted); }
+.outcome-stats b { display: block; font-size: 21px; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* ── capabilities ───────────────────────────────────────────────────────── */
+
+.caps ul { list-style: none; margin: 0 0 4px; padding: 0; }
+.caps li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.caps li:last-child { border-bottom: none; }
+.caps .tool { font: 600 12.5px var(--mono); }
+.caps .prov {
+  font: 600 9.5px/1 var(--mono); letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--faint); margin-left: 7px;
+}
+.caps .what { color: var(--muted); margin-top: 3px; }
+.caps .withheld-head { margin-top: 20px; display: flex; align-items: center; gap: 8px; }
+.pill {
+  background: var(--bad-soft); color: var(--bad); border-radius: 999px;
+  padding: 2px 8px; font: 700 11px var(--mono);
+}
+.withheld li .tool { color: var(--bad); text-decoration: line-through; }
+.withheld li .why { color: var(--muted); margin-top: 4px; }
+.withheld li .why b { color: var(--ink); font-weight: 650; }
+
+/* ── transcript ─────────────────────────────────────────────────────────── */
+
+.transcript-panel { margin: 0 28px 26px; }
+.transcript-panel .goal {
+  margin: 0 0 12px; font-size: 13px; color: var(--muted);
+  padding-left: 12px; border-left: 2px solid var(--line);
+}
+.transcript-panel blockquote {
+  margin: 0; padding: 14px 16px; background: var(--ground);
+  border-radius: 8px; font-size: 14.5px; line-height: 1.6;
+}
+.transcript-panel .src { margin: 10px 0 0; font: 11.5px var(--mono); color: var(--faint); }
+
+footer {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 18px 28px; border-top: 1px solid var(--line);
+  color: var(--faint); font-size: 12.5px;
+}
+
+/* The answer first, the whole conversation under it. A supervisor scanning the
+   list needs the one sentence, not the greeting. */
+.transcript-panel blockquote .said {
+  display: block; font-size: 17px; font-weight: 600; color: var(--ink);
+  margin-bottom: 12px; line-height: 1.45;
+}
+.transcript-panel blockquote .full {
+  display: block; white-space: pre-line; font: 12.5px/1.7 var(--mono); color: var(--muted);
+  border-top: 1px solid var(--line); padding-top: 11px;
+}

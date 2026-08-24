@@ -1,0 +1,383 @@
+{
+  "meta": {
+    "product": "Standby",
+    "slug": "standby",
+    "tagline": "One roster gap. One call at a time. Stop at the first yes.",
+    "appUrl": "http://localhost:3000",
+    "outDir": "out/standby",
+    "mode": "fixture",
+    "voice": "en-US-AndrewNeural",
+    "rate": "-3%",
+    "leadInMs": 450,
+    "lineGapMs": 340,
+    "width": 1600,
+    "height": 900,
+    "fps": 30,
+    "titleCardSeconds": 3,
+    "endCardSeconds": 3,
+    "targetTotalSeconds": 163,
+    "hardMaxSeconds": 178,
+    "notes": [
+      "CALL-E caps the video at 3 minutes. Target 2:45 assembled including cards; 178s is the wall.",
+      "The held beat is b5 - the moment the cascade stops. Everything before it exists to make that land.",
+      "Every transcript on screen is AUTHORED - written by scripts/make-fixtures.mjs, not recorded from anyone. No real call appears in this video.",
+      "Narration never reads an identifier aloud. Ids and hashes stay on screen and out of the script."
+    ]
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "name": "The problem",
+      "plannedSeconds": 19,
+      "screen": "Landing screen, still. The gap panel on the left, the standby list waiting.",
+      "narration": [
+        {
+          "text": "Five forty in the morning. A care home is one nurse short."
+        },
+        {
+          "text": "Somebody now rings twenty casual staff, one at a time, until one says yes."
+        },
+        {
+          "text": "One at a time - because ring all twenty and four say yes, and now you have to un-invite three people who already got out of bed."
+        }
+      ],
+      "actions": [
+        {
+          "do": "goto"
+        },
+        {
+          "do": "waitFor",
+          "sel": "#roster li"
+        },
+        {
+          "do": "hold",
+          "ms": 2000
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#gap-panel",
+          "hold": 1500
+        }
+      ]
+    },
+    {
+      "id": "b2",
+      "name": "What it will not do",
+      "plannedSeconds": 16,
+      "screen": "The withheld-capability panel on the right.",
+      "narration": [
+        {
+          "text": "This agent telephones real people about work, before dawn."
+        },
+        {
+          "text": "So it states on its own front page what it may not do."
+        },
+        {
+          "text": "Not call in parallel. Not negotiate pay. Not ring anyone the employer did not put on the roster."
+        }
+      ],
+      "actions": [
+        {
+          "do": "scrollTo",
+          "sel": "#caps-panel",
+          "hold": 1200
+        },
+        {
+          "do": "wheel",
+          "dy": 200
+        },
+        {
+          "do": "hold",
+          "ms": 3200
+        }
+      ]
+    },
+    {
+      "id": "b3",
+      "name": "One gap, ten people",
+      "plannedSeconds": 11,
+      "screen": "The gap: the shift, the note, the standby list of ten.",
+      "narration": [
+        {
+          "text": "Here is the gap. Early care shift, six o'clock, two residents who need two people to lift them."
+        },
+        {
+          "text": "Ten on the standby list. Watch who never gets rung."
+        }
+      ],
+      "actions": [
+        {
+          "do": "scrollTo",
+          "sel": "#gap-panel",
+          "hold": 1600
+        },
+        {
+          "do": "hover",
+          "sel": "#shift-note"
+        },
+        {
+          "do": "hold",
+          "ms": 2600
+        }
+      ]
+    },
+    {
+      "id": "b4",
+      "name": "The cascade runs",
+      "plannedSeconds": 18,
+      "screen": "Live: skips, then calls resolving one at a time.",
+      "narration": [
+        {
+          "text": "Two are skipped before anything is dialled - one opted out, one has no number on file. Both with the reason recorded."
+        },
+        {
+          "text": "Then it dials. One person at a time, never two."
+        },
+        {
+          "text": "No answer. A refusal. Somebody asking to be rung back in twenty minutes."
+        }
+      ],
+      "actions": [
+        {
+          "do": "click",
+          "sel": "#btn-run",
+          "settle": 600
+        },
+        {
+          "do": "waitFor",
+          "sel": "#roster li[data-state=\"calling\"]",
+          "timeout": 20000,
+          "optional": true
+        },
+        {
+          "do": "hold",
+          "ms": 6000
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#cascade-panel",
+          "hold": 400
+        },
+        {
+          "do": "hold",
+          "ms": 8000
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "name": "And it stops",
+      "plannedSeconds": 13,
+      "screen": "The accept lands. Everyone below goes grey.",
+      "narration": [
+        {
+          "text": "The fifth call says yes, arriving at ten to six."
+        },
+        {
+          "text": "And the cascade stops."
+        },
+        {
+          "text": "Four people below the line are stood down and never rung - recorded, with the reason."
+        }
+      ],
+      "actions": [
+        {
+          "do": "waitFor",
+          "sel": "#outcome:not([hidden])",
+          "timeout": 60000
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#outcome",
+          "hold": 600
+        },
+        {
+          "do": "wheel",
+          "dy": 260
+        },
+        {
+          "do": "hold",
+          "ms": 9000
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "name": "The transcript behind it",
+      "plannedSeconds": 14,
+      "screen": "Click the accepting call; the transcript panel opens.",
+      "narration": [
+        {
+          "text": "Every outcome opens the call behind it: the goal the agent was given, and what was said."
+        },
+        {
+          "text": "The transcripts are written, not recorded - so this runs with no account, and no one's phone call in it."
+        }
+      ],
+      "actions": [
+        {
+          "do": "click",
+          "sel": "#roster li[data-state=\"accepted\"]",
+          "settle": 1200
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#transcript-panel",
+          "hold": 5000
+        },
+        {
+          "do": "hold",
+          "ms": 4000
+        }
+      ]
+    },
+    {
+      "id": "b7",
+      "name": "Reading the answer",
+      "plannedSeconds": 25,
+      "screen": "Back to the list; the declined and callback rows.",
+      "narration": [
+        {
+          "text": "Reading that answer has three outcomes, not two."
+        },
+        {
+          "text": "This one is a clear no, so the cascade moves on. A call nobody could read does not - it stops, and waits for a person to say what it meant."
+        },
+        {
+          "text": "One call here reached voicemail. The provider calls that completed, because a message was delivered. It is not a person agreeing to come in at six."
+        }
+      ],
+      "actions": [
+        {
+          "do": "scrollTo",
+          "sel": "#cascade-panel",
+          "hold": 1200
+        },
+        {
+          "do": "click",
+          "sel": "#roster li[data-state=\"declined\"]",
+          "settle": 1400,
+          "optional": true
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#transcript-panel",
+          "hold": 4200
+        },
+        {
+          "do": "hold",
+          "ms": 4000
+        }
+      ]
+    },
+    {
+      "id": "b8",
+      "name": "When nobody can",
+      "plannedSeconds": 13,
+      "screen": "Re-run with the nobody-available scenario; it exhausts and says so.",
+      "narration": [
+        {
+          "text": "When nobody can take it, it says so and stops."
+        },
+        {
+          "text": "It does not loop, does not widen the list, does not ring anyone twice. A human decides what happens to the shift."
+        }
+      ],
+      "actions": [
+        {
+          "do": "scrollTo",
+          "sel": "#gap-panel",
+          "hold": 400
+        },
+        {
+          "do": "select",
+          "sel": "#scenario-select",
+          "value": "nobody-available"
+        },
+        {
+          "do": "click",
+          "sel": "#btn-run",
+          "settle": 600
+        },
+        {
+          "do": "waitFor",
+          "sel": "#outcome:not([hidden])",
+          "timeout": 90000
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#outcome",
+          "hold": 400
+        },
+        {
+          "do": "wheel",
+          "dy": 260
+        },
+        {
+          "do": "hold",
+          "ms": 3000
+        }
+      ]
+    },
+    {
+      "id": "b9",
+      "name": "Proved without a phone",
+      "plannedSeconds": 16,
+      "screen": "Back on the landing screen, capability panel in shot.",
+      "narration": [
+        {
+          "text": "The rule that matters is not a comment: a second call in flight raises an error. So does dialling while a call is held for a person."
+        },
+        {
+          "text": "That, the retry pass and the stop condition are sixty-three assertions against a state machine with no phone."
+        }
+      ],
+      "actions": [
+        {
+          "do": "scrollTo",
+          "sel": "#caps-panel",
+          "hold": 1500
+        },
+        {
+          "do": "hold",
+          "ms": 4000
+        },
+        {
+          "do": "scrollTo",
+          "sel": "#cascade-panel",
+          "hold": 3000
+        }
+      ]
+    },
+    {
+      "id": "b10",
+      "name": "Close",
+      "plannedSeconds": 18,
+      "screen": "Landing screen, still.",
+      "narration": [
+        {
+          "text": "No CALL-E account? Install nothing, sign up for nothing. Run npm start."
+        },
+        {
+          "text": "The whole product runs offline in thirty seconds, with no account at all."
+        },
+        {
+          "text": "Standby. One gap, one call at a time, stop at the first yes."
+        }
+      ],
+      "actions": [
+        {
+          "do": "goto"
+        },
+        {
+          "do": "waitFor",
+          "sel": "#roster li"
+        },
+        {
+          "do": "hold",
+          "ms": 4500
+        }
+      ]
+    }
+  ]
+}

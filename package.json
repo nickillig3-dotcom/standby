@@ -1,0 +1,30 @@
+{
+  "name": "standby",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standby — an on-call shift-fill agent. One roster gap, one sequential call cascade, one stop on the first accept. Built on CALL-E for the \"Your Code Is Calling\" hackathon.",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "check": "node --check server/index.js && node --check server/cascade.js && node --check server/calle.js && node --check server/runner.js && node --check server/demo.js",
+    "test": "node scripts/test-numbers.mjs && node scripts/make-fixtures.mjs --check && node scripts/test-cascade.mjs && node scripts/test-classify.mjs && node scripts/test-fixtures.mjs",
+    "fixtures": "node scripts/make-fixtures.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "capture": "node scripts/capture-call.mjs"
+  },
+  "keywords": [
+    "call-e",
+    "phone-agent",
+    "shift-fill",
+    "cascade",
+    "on-call",
+    "hackathon"
+  ],
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -1,0 +1,21 @@
+{
+ "meta": { "product": "Standby", "width": 1600, "height": 900, "outDir": "out/standby/cards" },
+ "palette": { "ground": "#f6f7f9", "ink": "#14171c", "muted": "#5d646f", "accent": "#b45309" },
+ "cards": {
+  "title": [
+   { "type": "rule", "y": 0.335, "w": 0.055, "color": "accent" },
+   { "type": "text", "y": 0.385, "text": "Standby", "size": 0.130, "font": "serif-bold", "color": "ink" },
+   { "type": "text", "y": 0.565, "text": "One roster gap. One call at a time.", "size": 0.040, "color": "muted" },
+   { "type": "text", "y": 0.625, "text": "Stop at the first yes.", "size": 0.040, "color": "muted" },
+   { "type": "text", "y": 0.750, "text": "BUILT ON CALL-E", "size": 0.023, "font": "bold", "color": "muted", "spacing": 0.005 }
+  ],
+  "end": [
+   { "type": "text", "y": 0.220, "text": "No CALL-E account?", "size": 0.068, "font": "serif-bold", "color": "ink" },
+   { "type": "text", "y": 0.318, "text": "npm start", "size": 0.068, "font": "serif-bold", "color": "accent" },
+   { "type": "rule", "y": 0.460, "w": 0.055, "color": "accent" },
+   { "type": "text", "y": 0.535, "text": "The whole product runs offline, no account, no cost.", "size": 0.036, "color": "muted" },
+   { "type": "text", "y": 0.620, "text": "github.com/nickillig3-dotcom/standby", "size": 0.033, "font": "bold", "color": "accent" },
+   { "type": "text", "y": 0.775, "text": "CALL-E  \u00b7  YOUR CODE IS CALLING  \u00b7  2026", "size": 0.021, "font": "bold", "color": "muted", "spacing": 0.004 }
+  ]
+ }
+}

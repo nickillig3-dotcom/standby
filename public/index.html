@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standby — the on-call shift filler</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true">◟</span>
+    <div>
+      <h1>Standby</h1>
+      <p>One roster gap. One call at a time. Stop at the first yes.</p>
+    </div>
+  </div>
+  <div class="mode" id="mode-badge" title="Fixture mode replays authored CALL-E responses — written, not recorded. No account, no cost.">…</div>
+</header>
+
+<main>
+
+  <!-- ── the gap ─────────────────────────────────────────────────────────── -->
+  <section class="panel gap" id="gap-panel">
+    <h2>The gap</h2>
+    <div class="field">
+      <label for="shift-select">Open shift</label>
+      <select id="shift-select"></select>
+    </div>
+    <p class="note" id="shift-note"></p>
+    <dl class="meta" id="shift-meta"></dl>
+
+    <div class="field">
+      <label for="scenario-select">How the morning goes
+        <span class="hint" title="Fixture mode replays authored fixtures. The scenario says which outcome stands in for each call, so a ten-person cascade can be shown without placing ten real calls.">?</span>
+      </label>
+      <select id="scenario-select"></select>
+    </div>
+
+    <div class="actions">
+      <button id="btn-run" class="primary">Start the cascade</button>
+      <button id="btn-abort" class="ghost" disabled>Stop</button>
+    </div>
+    <p class="cost" id="cost-line"></p>
+  </section>
+
+  <!-- ── the cascade ─────────────────────────────────────────────────────── -->
+  <section class="panel cascade" id="cascade-panel">
+    <div class="cascade-head">
+      <h2>The standby list</h2>
+      <span class="counter" id="counter">—</span>
+    </div>
+    <ol class="roster" id="roster"></ol>
+
+    <!-- Shown only while the cascade is halted on a call nobody could read.
+         It is a decision, not a notification: nothing else is dialled until
+         somebody presses one of these. -->
+    <div class="held" id="held" hidden>
+      <div class="held-head">Held — a person has to decide</div>
+      <p class="held-why" id="held-why"></p>
+      <p class="held-note">Listen to the call above, then record what was actually said. Nobody
+        further down the list is rung until you do — the next name might otherwise be called
+        about a shift that is already taken.</p>
+      <div class="held-actions">
+        <button class="primary" data-reconcile="accept">They accepted</button>
+        <button class="ghost" data-reconcile="decline">They declined</button>
+        <button class="ghost" data-reconcile="no_answer">Never actually reached them</button>
+      </div>
+      <label class="held-by">Recorded by
+        <input id="held-by" type="text" placeholder="your name" autocomplete="off">
+      </label>
+    </div>
+
+    <div class="outcome" id="outcome" hidden>
+      <div class="outcome-main" id="outcome-main"></div>
+      <div class="outcome-stats" id="outcome-stats"></div>
+    </div>
+  </section>
+
+  <!-- ── what it will not do ─────────────────────────────────────────────── -->
+  <aside class="panel caps" id="caps-panel">
+    <h2>What it may do</h2>
+    <ul class="can" id="can-list"></ul>
+    <h2 class="withheld-head">Withheld <span id="withheld-count" class="pill">0</span></h2>
+    <ul class="withheld" id="withheld-list"></ul>
+  </aside>
+
+</main>
+
+<section class="panel transcript-panel" id="transcript-panel" hidden>
+  <h2>Call <span id="transcript-who"></span></h2>
+  <p class="goal" id="transcript-goal"></p>
+  <blockquote id="transcript-text"></blockquote>
+  <p class="src" id="transcript-src"></p>
+</section>
+
+<footer>
+  <span>Standby — built for the CALL-E “Your Code Is Calling” hackathon 2026.</span>
+  <span id="foot-mode"></span>
+</footer>
+
+<script src="/app.js" type="module"></script>
+</body>
+</html>

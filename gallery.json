@@ -1,0 +1,54 @@
+{
+ "meta": {
+  "product": "Standby",
+  "slug": "standby",
+  "appUrl": "http://localhost:3000",
+  "outDir": "out/standby/gallery",
+  "width": 1620, "height": 1080
+ },
+ "shots": [
+  { "name": "01-the-gap",
+    "caption": "05:12, someone calls in sick. Ten people on the standby list, one slot to fill.",
+    "actions": [ {"do":"goto"}, {"do":"waitFor","sel":"#roster li"}, {"do":"scrollTo","sel":"#gap-panel","hold":500} ] },
+
+  { "name": "02-withheld",
+    "caption": "The four capabilities the agent was never given — each with its own reason, on the front page.",
+    "actions": [ {"do":"scrollTo","sel":"#caps-panel","hold":400}, {"do":"wheel","dy":150} ] },
+
+  { "name": "03-cascade-running",
+    "caption": "One call in flight, ever. Ringing all twenty at once is how four people turn up for one shift.",
+    "actions": [ {"do":"scrollTo","sel":"#gap-panel","hold":200},
+                 {"do":"click","sel":"#btn-run","settle":2500},
+                 {"do":"scrollTo","sel":"#cascade-panel","hold":600} ] },
+
+  { "name": "04-the-stop",
+    "caption": "The fifth call says yes. The cascade stops, and four people below the line are never rung.",
+    "actions": [ {"do":"waitFor","sel":"#outcome:not([hidden])","timeout":60000},
+                 {"do":"scrollTo","sel":"#outcome","hold":400},
+                 {"do":"wheel","dy":240} ] },
+
+  { "name": "05-transcript",
+    "caption": "Every outcome opens the call behind it — the goal the agent was given, and what was said.",
+    "actions": [ {"do":"scrollTo","sel":"#cascade-panel","hold":200},
+                 {"do":"click","sel":"#roster li[data-state=\"accepted\"]","settle":800},
+                 {"do":"scrollTo","sel":"#transcript-panel","hold":600} ] },
+
+  { "name": "06-exhausted",
+    "caption": "When nobody can take it, it says so and stops. No looping, no widening the list, nobody rung twice.",
+    "actions": [ {"do":"scrollTo","sel":"#gap-panel","hold":200},
+                 {"do":"select","sel":"#scenario-select","value":"nobody-available"},
+                 {"do":"click","sel":"#btn-run","settle":600},
+                 {"do":"waitFor","sel":"#outcome:not([hidden])","timeout":90000},
+                 {"do":"scrollTo","sel":"#outcome","hold":400},
+                 {"do":"wheel","dy":240} ] },
+
+  { "name": "07-held",
+    "caption": "A call nobody could read stops the cascade. It is not scored as a no — nobody further down the list is rung until a person says what it meant, by name.",
+    "actions": [ {"do":"scrollTo","sel":"#gap-panel","hold":200},
+                 {"do":"select","sel":"#scenario-select","value":"unreadable-call"},
+                 {"do":"click","sel":"#btn-run","settle":600},
+                 {"do":"waitFor","sel":"#held:not([hidden])","timeout":90000},
+                 {"do":"scrollTo","sel":"#held","hold":600},
+                 {"do":"wheel","dy":200} ] }
+ ]
+}

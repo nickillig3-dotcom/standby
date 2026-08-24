@@ -1,0 +1,58 @@
+{
+  "synthetic": true,
+  "authoredAt": "2026-08-24T09:00:00.000Z",
+  "durationSeconds": 19,
+  "note": "Authored fixture, not a recording. No call was placed to produce this file. It contains no transcript, audio, identifier or timing from any real conversation. The dialogue is written; the structure reproduces a CALL-E run so the classifier is exercised offline. The destination is +4917604069001, inside a mobile block the German networks keep permanently unassigned for use in media.",
+  "goal": "Call the person answering about an open Early care shift starting Sunday 06:00 at Haus Lindenhof, Station 2 (8 hours). Ask whether they can take it. If yes, confirm and ask what time they can arrive. If no, thank them and end the call politely — do not push. If they ask to be called back, note the time they name. Do not offer pay, terms or anything not stated here.",
+  "raw": {
+    "run_id": "synthetic-run-05-unreadable",
+    "status": "COMPLETED",
+    "message": "Synthetic fixture — no call was placed.",
+    "display_goal": "Call the person who answers about an open Early care shift starting Sunday at 06:00 at Haus Lindenhof, Station 2, for 8 hours. Ask whether they can take the shift. If yes, confirm that they can take it and ask what time they can arrive. If no, thank them and end the call politely without pushing. If they ask to be called back, note the callback time they name and report it back. Do not offer pay, terms, or anything not stated here.",
+    "schedule_mode": "immediate",
+    "result": {
+      "summary": "The call connected and the shift question was asked, but the reply was not intelligible and the line dropped before any answer was given.",
+      "post_summary": "The call connected and the shift question was asked, but the reply was not intelligible and the line dropped before any answer was given.",
+      "outcome": {
+        "task_completed": false,
+        "completion_confidence": {
+          "score": 0.2,
+          "label": "low"
+        },
+        "evidence": [
+          "A person answered the call.",
+          "The shift question was asked.",
+          "The reply was not intelligible and the call ended before an answer was given."
+        ]
+      },
+      "extracted": {
+        "goal": "Call the person who answers about an open Early care shift starting Sunday at 06:00 at Haus Lindenhof, Station 2, for 8 hours. Ask whether they can take the shift. If yes, confirm that they can take it and ask what time they can arrive. If no, thank them and end the call politely without pushing. If they ask to be called back, note the callback time they name and report it back. Do not offer pay, terms, or anything not stated here.",
+        "region": "DE",
+        "language": "German",
+        "calling": {
+          "calls": [
+            {
+              "status": "finished",
+              "reason_code": "0",
+              "duration_seconds": 19
+            }
+          ],
+          "status": "finished",
+          "callee_count": 1,
+          "duration_seconds": 19
+        },
+        "to_phones": [
+          "+4917604069001"
+        ]
+      },
+      "transcript": "[00:00:00] BOT: Hallo.\n[00:00:04] USER: [unverständlich]\n[00:00:05] BOT: Ich rufe wegen eines offenen Frühdienstes am Sonntag um sechs Uhr morgens im Haus Lindenhof,\n[00:00:12] BOT: Station zwei, an; können Sie die Schicht übernehmen?\n[00:00:17] USER: Ähm — also ich — [Verbindung bricht ab]",
+      "call_id": "synthetic-call-05-unreadable",
+      "call_ids": [
+        "synthetic-call-05-unreadable"
+      ]
+    },
+    "next_step": {
+      "action": "report_blocked"
+    }
+  }
+}

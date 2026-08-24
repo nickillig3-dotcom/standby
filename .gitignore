@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.local
+*.log
+out/
+.DS_Store
+
+# Interne Notizen, nicht Teil der Einreichung
+notes/
+
+# Real calls placed by scripts/capture-call.mjs. Recordings of people speaking:
+# development-only, never committed, never replayed by fixture mode.
+captures/
